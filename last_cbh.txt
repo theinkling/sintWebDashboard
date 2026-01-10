@@ -1,0 +1,8 @@
+# last cbh at 23.06.2024/20:50:33:
+# cbh_lowest[N] =   NaN
+# cbh averages over last 15.0min, centered at 23.06.2024/20:43:19
+# cbh_low_m =   NaN +/-   NaN km
+# cbh_mid_m =   NaN +/-   NaN km
+# cbh_hig_m =   NaN +/-   NaN km
+"date/time (UTC)","cbh[last] (km)","cbh_low_m (km)","cbh_low_s (km)","cbh_mid_m (km)","cbh_mid_s (km)","cbh_hig_m (km)","cbh_hig_s (km)"
+"23.06.2024/20:50:33",NaN,NaN,NaN,NaN,NaN,NaN,NaN

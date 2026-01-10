@@ -1,0 +1,50 @@
+async function queryAPI() {
+    let url = 'data.json';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function updateBoxes() {
+
+    let data = await queryAPI();
+    //update box-values
+    var datetime = new Date(data["datetime"]);
+    var options = {
+        // timeZone: "UTC",
+        hour12: false,
+        year: "2-digit",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    };
+    var formattedDatetime = datetime.toLocaleString("de-DE", options);
+
+    document.querySelector("#datetime").innerHTML = " " + formattedDatetime + " UTC";
+    document.querySelector("#temperature").innerHTML = '<span">' + data["temperature"]["string"] + ' °C</span>';
+    document.querySelector("#dewpoint").innerHTML = '<span">' + data["dewpoint"]["string"] + ' °C</span>';
+    document.querySelector("#humidity").innerHTML = '<span">' + data["humidity"]["value"] + '</span><span class="mobile-font""> %</span>';
+    document.querySelector("#pressure").innerHTML = '<span">' + data["pressure"]["value"] + '</span><span class="mobile-font""> hPa</span>';
+    document.querySelector("#ground-pressure").innerHTML = data["ground-pressure"]["value"] + " " + data["ground-pressure"]["unit"]
+    document.querySelector("#speed").innerHTML = '<span">' + data["wind_speed"]["string"] + '</span><span class="mobile-font""> km/h</span>';
+    document.querySelector("#direction").innerHTML = '<span class="mobile-font">' + data["wind_direction"]["string"] + '</span>';
+
+
+
+    //disable spinner
+    document.querySelector("#spinner1").style.display = "none";
+    document.querySelector("#spinner2").style.display = "none";
+    document.querySelector("#spinner3").style.display = "none";
+    document.querySelector("#spinner4").style.display = "none";
+
+
+}
+
+updateBoxes()
+
+setInterval(function () {
+    updateBoxes()
+}, 30000);
