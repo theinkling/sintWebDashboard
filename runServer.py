@@ -75,7 +75,11 @@ class MyServer(BaseHTTPRequestHandler):
                 },
                 "pressure": {
                     "value": round(
-                        convert_sea_lvl_pressure(df["BP_mbar_Avg"].values.item()), 0
+                        convert_sea_lvl_pressure(
+                            df["BP_mbar_Avg"].values.item(),
+                            df["AirTC_Avg"].values.item(),
+                        ),
+                        0,
                     ),
                     "unit": "hPa",
                 },

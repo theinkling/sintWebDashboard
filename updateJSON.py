@@ -31,7 +31,7 @@ def float_format(x, n_digits):
     return s
 
 
-def convert_sea_lvl_pressure(p, T, h):
+def convert_sea_lvl_pressure(p, T, h=73):
     """
     Converts measured pressure to pressure @ sea lvl
     See https://gist.github.com/cubapp/23dd4e91814a995b8ff06f406679abcf
@@ -124,7 +124,11 @@ def updateJSON():
         "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
         "pressure": {
             "value": round(
-                convert_sea_lvl_pressure(df["BP_mbar_Avg"].values.item()), 0
+                convert_sea_lvl_pressure(
+                    df["BP_mbar_Avg"].values.item(),
+                    df["AirTC_Avg"].values.item(),
+                ),
+                0,
             ),
             "unit": "hPa",
         },
