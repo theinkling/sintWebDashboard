@@ -31,6 +31,23 @@ def float_format(x, n_digits):
     return s
 
 
+def convert_sea_lvl_pressure(p, T, h):
+    """
+    Converts measured pressure to pressure @ sea lvl
+    See https://gist.github.com/cubapp/23dd4e91814a995b8ff06f406679abcf
+
+    Args:
+        p (float): Raw measured pressure (in hPa)
+        T (float): Temperature at the station (in deg C)
+        h (float): Station height above sea lvl (in m)
+
+    Returns:
+        float: Pressure converted to sea lvl (in hPa)
+    """
+
+    return p + ((p * 9.80665 * h) / (287 * (273 + T + (h / 400))))
+
+
 def dew_point(T, RH):
     # Function from dx.doi.org/10.1175/BAMS-86-2-225
     # T in Celsius, RH in %
@@ -106,7 +123,9 @@ def updateJSON():
         },
         "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
         "pressure": {
-            "value": round(df["BP_mbar_Avg"].values.item(), 0),
+            "value": round(
+                convert_sea_lvl_pressure(df["BP_mbar_Avg"].values.item()), 0
+            ),
             "unit": "hPa",
         },
         "ground-pressure": {

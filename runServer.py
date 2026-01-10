@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from updateJSON import cbh_to_str
 import json
 import pandas as pd
-from updateJSON import dew_point
+from updateJSON import dew_point, convert_sea_lvl_pressure
 
 
 local = False
@@ -69,12 +69,14 @@ class MyServer(BaseHTTPRequestHandler):
                     ),
                 },
                 "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
-                "pressure": {
+                "ground-pressure": {
                     "value": round(df["BP_mbar_Avg"].values.item(), 0),
                     "unit": "hPa",
                 },
-                "ground-pressure": {
-                    "value": round(df["BP_mbar_Avg"].values.item(), 0),
+                "pressure": {
+                    "value": round(
+                        convert_sea_lvl_pressure(df["BP_mbar_Avg"].values.item()), 0
+                    ),
                     "unit": "hPa",
                 },
                 "wind_direction": {
