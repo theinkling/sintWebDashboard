@@ -105,10 +105,10 @@ def updateJSON():
             "string": str(round(df["dewpoint"].values.item(), 1)).replace(".", ","),
         },
         "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
-        #"pressure": {
-        #    "value": round(df["BP_mbar_SL_Avg"].values.item(), 0),
-        #    "unit": "hPa",
-        #},
+        "pressure": {
+            "value": round(df["BP_mbar_Avg"].values.item(), 0),
+            "unit": "hPa",
+        },
         "ground-pressure": {
             "value": round(df["BP_mbar_Avg"].values.item(), 0),
             "unit": "hPa",

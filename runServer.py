@@ -10,7 +10,7 @@ local = False
 if local:
     hostName = "localhost"
     serverPort = 8080
-    dataFilePath = "./latest_jue.dat"
+    dataFilePath = "./latest_sint.dat"
 
 
 else:
@@ -69,10 +69,10 @@ class MyServer(BaseHTTPRequestHandler):
                     ),
                 },
                 "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
-                #"pressure": {
-                #    "value": round(df["BP_mbar_SL_Avg"].values.item(), 0),
-                #    "unit": "hPa",
-                #},
+                "pressure": {
+                    "value": round(df["BP_mbar_Avg"].values.item(), 0),
+                    "unit": "hPa",
+                },
                 "ground-pressure": {
                     "value": round(df["BP_mbar_Avg"].values.item(), 0),
                     "unit": "hPa",
