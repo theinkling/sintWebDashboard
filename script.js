@@ -35,7 +35,11 @@ async function updateBoxes() {
 
 
 
-
+    //disable spinner
+    document.querySelector("#spinner1").style.display = "none";
+    document.querySelector("#spinner2").style.display = "none";
+    document.querySelector("#spinner3").style.display = "none";
+    document.querySelector("#spinner4").style.display = "none";
 
 
 }
