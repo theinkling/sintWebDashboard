@@ -79,13 +79,13 @@ def updateJSON():
     # convert wind direction
     dir_name = [
         "N",
-        "NNE",
-        "NE",
-        "ENE",
-        "E",
-        "ESE",
-        "SE",
-        "SSE",
+        "NNO",
+        "NO",
+        "ONO",
+        "O",
+        "OSO",
+        "SO",
+        "SSO",
         "S",
         "SSW",
         "SW",
@@ -105,7 +105,7 @@ def updateJSON():
     # convert utc time stamp into python datetime
     datetime = pd.to_datetime(df["TIMESTAMP"].values.item())
 
-    datetime = datetime.tz_localize("Europe/Berlin")
+    datetime = datetime.tz_localize("utc").tz_convert("Europe/Berlin")
 
     df["dewpoint"] = dew_point(df["AirTC_Avg"], df["RH"])
     # create a dict with nicely formatted strings for the variables
