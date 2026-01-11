@@ -40,6 +40,8 @@ async function updateBoxes() {
     document.querySelector("#spinner2").style.display = "none";
     document.querySelector("#spinner3").style.display = "none";
     document.querySelector("#spinner4").style.display = "none";
+    document.querySelector("#spinner6").style.display = "none";
+    document.querySelector("#spinner8").style.display = "none";
 
 
 }
