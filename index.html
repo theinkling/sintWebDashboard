@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JOYCE Dashboard</title>
+  <title>Sinthern Wetter-Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
@@ -64,7 +64,7 @@
                 <div class="inner">
                   <h3 id="temperature">NaN</h3>
                   <p>
-                    <span id="temp-target">Temperature, Dew Point: <span id="dewpoint">NaN</span></span>
+                    <span id="temp-target">Temperatur, Taupunkt: <span id="dewpoint">NaN</span></span>
                   </p>                
                 </div>
                 <div class="icon">
@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="small-box-footer">
-                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Temperatur_Juelich"
-                    style="color:white" target="_blank">History <i class="bi bi-graph-up"></i></a>
+                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Temperatur_Sinthern"
+                    style="color:white" target="_blank">Verlauf <i class="bi bi-graph-up"></i></a>
                   &nbsp;&nbsp;&nbsp; <!--- some space between the two link+icon combinations --->
                   <a href="https://obs.meteo.uni-koeln.de/doku.php?id=citystation#temperatur_und_feuchte"
                     style="color:white" target="_blank">Details <i class="bi bi-file-earmark-text"></i></a>
@@ -92,7 +92,7 @@
                 <div class="inner">
                   <h3 id="pressure">NaN</h3>
                   <p>
-                    <span id="pressure-target">Pressure (SL), Station: <span id="ground-pressure">NaN</span> </span>
+                    <span id="pressure-target">Druck (NN), Station: <span id="ground-pressure">NaN</span> </span>
                   </p>
                   <!---  das war MSL, Abk. f�r 'Mean Sea Level' , ersetzt durch NN = 'Normal Null', das ist die (alte) deutsche Bezeichung, neu w�re NHN ...  --->
                 </div>
@@ -101,8 +101,8 @@
                 </div>
 
                 <div class="small-box-footer">
-                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Druck_Juelich"
-                    style="color:white" target="_blank">History <i class="bi bi-graph-up"></i></a>
+                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Druck_Sinthern"
+                    style="color:white" target="_blank">Verlauf <i class="bi bi-graph-up"></i></a>
                   &nbsp;&nbsp;&nbsp;
                   <a href="https://obs.meteo.uni-koeln.de/doku.php?id=citystation#luftdruck" style="color:white"
                     target="_blank">Details <i class="bi bi-file-earmark-text"></i></a>
@@ -130,8 +130,8 @@
                 </div>
 
                 <div class="small-box-footer">
-                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser2.html?site=CITYSTATION&date=0&UpperLeft=Windgeschwindigkeit_Juelich&UpperRight=Windrichtung_Juelich"
-                    style="color:white" target="_blank">History <i class="bi bi-graph-up"></i></a>
+                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser2.html?site=CITYSTATION&date=0&UpperLeft=Windgeschwindigkeit_Juelich&UpperRight=Windrichtung_Sinthern"
+                    style="color:white" target="_blank">Verlauf <i class="bi bi-graph-up"></i></a>
                   &nbsp;&nbsp;&nbsp;
                   <a href="https://obs.meteo.uni-koeln.de/doku.php?id=citystation#windrichtung_und_-geschwindigkeit"
                     style="color:white" target="_blank">Details <i class="bi bi-file-earmark-text"></i></a>
@@ -150,15 +150,15 @@
               <div class="small-box bg-success">
                 <div class="inner">
                   <h3 id="humidity">NaN</h3>
-                  <p>Relative Humidity</p>
+                  <p>Luftfeuchtigkeit</p>
                 </div>
                 <div class="icon">
                   <i class="bi bi-droplet"></i>
                 </div>
 
                 <div class="small-box-footer">
-                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Feuchte_Juelich"
-                    style="color:white" target="_blank">History <i class="bi bi-graph-up"></i></a>
+                  <a href="https://atmos.meteo.uni-koeln.de/~citystation/dataBrowser/dataBrowser1.html?site=CITYSTATION&date=0&UpperLeft=Feuchte_Sinthern"
+                    style="color:white" target="_blank">Verlauf <i class="bi bi-graph-up"></i></a>
                   &nbsp;&nbsp;&nbsp;
                   <a href="https://obs.meteo.uni-koeln.de/doku.php?id=citystation#temperatur_und_feuchte"
                     style="color:white" target="_blank">Details <i class="bi bi-file-earmark-text"></i></a>
@@ -183,13 +183,13 @@
       Weitere Informationen zu unseren Messinstrumenten finden Sie <strong><a
         href="https://obs.meteo.uni-koeln.de/doku.php?id=citystation">hier</a></strong>. Klicken Sie auf “Verlauf” um Messdaten
       aus der Vergangenheit anzuschauen.</br>
-      <strong>Copyright &copy; 2024 <a href="https://geomet.uni-koeln.de/">Institut
+      <strong>Copyright &copy; 2026 <a href="https://geomet.uni-koeln.de/">Institut
           für Geophysik und Meteorologie</a>.</strong>
       All rights reserved.
       </br>
       <strong>Kontakt: <a href="mailto:wetter-station@uni-koeln.de">wetter-station@uni-koeln.de</a> </strong>
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.3
+        <b>Version</b> 1.0.4
       </div>
     </footer>
   </div>
