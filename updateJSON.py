@@ -146,6 +146,11 @@ def updateJSON():
             "unit": "km/h",
             "string": str(speed).replace(".", ","),
         },
+        "global_radiation": {
+            "value": df["SlrkW_Avg"].values.item(),
+            "unit": "kW/mª",
+            # "string": str(speed).replace(".", ","),
+        },
     }
 
     # export these strings in data.json

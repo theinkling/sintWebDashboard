@@ -93,6 +93,11 @@ class MyServer(BaseHTTPRequestHandler):
                     "unit": "km/h",
                     "string": str(speed).replace(".", ","),
                 },
+                "global_radiation": {
+                    "value": df["SlrkW_Avg"].values.item(),
+                    "unit": "kW/mª",
+                    # "string": str(speed).replace(".", ","),
+                },
             }
             # read last entry from data file and update dict
             # To do
