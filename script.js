@@ -13,7 +13,7 @@ async function updateBoxes() {
     //update box-values
     var datetime = new Date(data["datetime"]);
     var options = {
-        // timeZone: "UTC",
+        timeZone: "Europe/Berlin",
         hour12: false,
         year: "2-digit",
         month: "2-digit",
@@ -23,7 +23,7 @@ async function updateBoxes() {
     };
     var formattedDatetime = datetime.toLocaleString("de-DE", options);
 
-    document.querySelector("#datetime").innerHTML = " " + formattedDatetime + " UTC";
+    document.querySelector("#datetime").innerHTML = " " + formattedDatetime + " Ortszeit";
     document.querySelector("#temperature").innerHTML = '<span">' + data["temperature"]["string"] + ' °C</span>';
     document.querySelector("#dewpoint").innerHTML = '<span">' + data["dewpoint"]["string"] + ' °C</span>';
     document.querySelector("#humidity").innerHTML = '<span">' + data["humidity"]["value"] + '</span><span class="mobile-font""> %</span>';
