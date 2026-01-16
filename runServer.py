@@ -52,53 +52,63 @@ class MyServer(BaseHTTPRequestHandler):
             directionLetter = dir_name[int(df["WindDir_D1_WVT"].item() / 22.5 + 0.5)]
             speed = round(df["WS_ms_S_WVT"].item() * 3.6, 1)
             df["dewpoint"] = dew_point(df["AirTC_Avg"], df["RH"])
-            dict = {
-                "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),
-                "temperature": {
-                    "value": round(df["AirTC_Avg"].values.item(), 1),
-                    "unit": "°C",
-                    "string": str(round(df["AirTC_Avg"].values.item(), 1)).replace(
-                        ".", ","
-                    ),
-                },
-                "dewpoint": {
-                    "value": round(df["dewpoint"].values.item(), 1),
-                    "unit": "°C",
-                    "string": str(round(df["dewpoint"].values.item(), 1)).replace(
-                        ".", ","
-                    ),
-                },
-                "humidity": {"value": round(df["RH"].values.item(), 0), "unit": "%"},
-                "ground-pressure": {
-                    "value": round(df["BP_mbar_Avg"].values.item(), 0),
-                    "unit": "hPa",
-                },
-                "pressure": {
-                    "value": round(
-                        convert_sea_lvl_pressure(
-                            df["BP_mbar_Avg"].values.item(),
-                            df["AirTC_Avg"].values.item(),
+            dict = (
+                {
+                    "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),
+                    "temperature": {
+                        "value": round(df["AirTC_Avg"].values.item(), 1),
+                        "unit": "°C",
+                        "string": str(round(df["AirTC_Avg"].values.item(), 1)).replace(
+                            ".", ","
                         ),
-                        0,
-                    ),
-                    "unit": "hPa",
-                },
-                "wind_direction": {
-                    "value": df["WindDir_D1_WVT"].values.item(),
-                    "unit": "°",
-                    "string": directionLetter,
-                },
-                "wind_speed": {
-                    "value": speed,
-                    "unit": "km/h",
-                    "string": str(speed).replace(".", ","),
-                },
-                "global_radiation": {
-                    "value": df["SlrkW_Avg"].values.item(),
-                    "unit": "kW/mª",
+                    },
+                    "dewpoint": {
+                        "value": round(df["dewpoint"].values.item(), 1),
+                        "unit": "°C",
+                        "string": str(round(df["dewpoint"].values.item(), 1)).replace(
+                            ".", ","
+                        ),
+                    },
+                    "humidity": {
+                        "value": round(df["RH"].values.item(), 0),
+                        "unit": "%",
+                    },
+                    "ground-pressure": {
+                        "value": round(df["BP_mbar_Avg"].values.item(), 0),
+                        "unit": "hPa",
+                    },
+                    "pressure": {
+                        "value": round(
+                            convert_sea_lvl_pressure(
+                                df["BP_mbar_Avg"].values.item(),
+                                df["AirTC_Avg"].values.item(),
+                            ),
+                            0,
+                        ),
+                        "unit": "hPa",
+                    },
+                    "wind_direction": {
+                        "value": df["WindDir_D1_WVT"].values.item(),
+                        "unit": "°",
+                        "string": directionLetter,
+                    },
+                    "wind_speed": {
+                        "value": speed,
+                        "unit": "km/h",
+                        "string": str(speed).replace(".", ","),
+                    },
+                    "global_radiation": {
+                        "value": df["SlrkW_Avg"].values.item(),
+                        "unit": "kW/m²",
+                    },
                     # "string": str(speed).replace(".", ","),
+                    "precip_1h": {
+                        "value": df["Rain_mm_Tot_hour"].values.item(),
+                        "unit": "mm",
+                    },
                 },
-            }
+            )
+
             # read last entry from data file and update dict
             # To do
             # serve json

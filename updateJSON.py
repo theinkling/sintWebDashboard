@@ -148,8 +148,12 @@ def updateJSON():
         },
         "global_radiation": {
             "value": df["SlrkW_Avg"].values.item(),
-            "unit": "kW/mª",
+            "unit": "kW/m²",
             # "string": str(speed).replace(".", ","),
+        },
+        "precip_1h": {
+            "value": df["Rain_mm_Tot_hour"].values.item(),
+            "unit": "mm",
         },
     }
 
