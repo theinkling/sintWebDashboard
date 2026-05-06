@@ -31,8 +31,8 @@ async function updateBoxes() {
     document.querySelector("#ground-pressure").innerHTML = data["ground-pressure"]["value"] + " " + data["ground-pressure"]["unit"]
     document.querySelector("#speed").innerHTML = '<span">' + data["wind_speed"]["string"] + '</span><span class="mobile-font""> km/h</span>';
     document.querySelector("#direction").innerHTML = '<span class="mobile-font">' + data["wind_direction"]["string"] + '</span>';
-    document.querySelector("#strahl").innerHTML = '<span">' + data["global_radiation"]["value"] + '</span><span class="mobile-font""> kW/m²</span>';
-    document.querySelector("#precip").innerHTML = '<span">' + data["precip_1h"]["value"] + '</span><span class="mobile-font""> mm</span>';
+    document.querySelector("#strahl").innerHTML = '<span">' + data["global_radiation"]["string"] + '</span><span class="mobile-font""> kW/m²</span>';
+    document.querySelector("#precip").innerHTML = '<span">' + data["precip_1h"]["string"] + '</span><span class="mobile-font""> mm</span>';
 
 
 
