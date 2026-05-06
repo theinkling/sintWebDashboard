@@ -100,11 +100,14 @@ class MyServer(BaseHTTPRequestHandler):
                     "global_radiation": {
                         "value": df["SlrkW_Avg"].values.item(),
                         "unit": "kW/m²",
+                        "string": str(df["SlrkW_Avg"].values.item()).replace(".", ","),
                     },
-                    # "string": str(speed).replace(".", ","),
                     "precip_1h": {
                         "value": round(df["Rain_mm_Tot_hour"].values.item(), 1),
                         "unit": "mm",
+                        "string": str(
+                            round(df["Rain_mm_Tot_hour"].values.item(), 1)
+                        ).replace(".", ","),
                     },
                 },
             )

@@ -149,11 +149,14 @@ def updateJSON():
         "global_radiation": {
             "value": df["SlrkW_Avg"].values.item(),
             "unit": "kW/m²",
-            # "string": str(speed).replace(".", ","),
+            "string": str(df["SlrkW_Avg"].values.item()).replace(".", ","),
         },
         "precip_1h": {
             "value": round(df["Rain_mm_Tot_hour"].values.item(), 1),
             "unit": "mm",
+            "string": str(round(df["Rain_mm_Tot_hour"].values.item(), 1)).replace(
+                ".", ","
+            ),
         },
     }
 
