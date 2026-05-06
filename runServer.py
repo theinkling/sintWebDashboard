@@ -103,7 +103,7 @@ class MyServer(BaseHTTPRequestHandler):
                     },
                     # "string": str(speed).replace(".", ","),
                     "precip_1h": {
-                        "value": df["Rain_mm_Tot_hour"].values.item(),
+                        "value": round(df["Rain_mm_Tot_hour"].values.item(), 1),
                         "unit": "mm",
                     },
                 },
