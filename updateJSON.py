@@ -11,9 +11,11 @@ local = False
 
 if local:
     dataFilePath = "./latest_sint.dat"
+    cbhFilePath = "./cbh.dat"
     jsonFilePath = "./data.json"
 else:
     dataFilePath = "/data/obs/site/cgn/meteo_sinthern/latest_sint.dat"
+    cbhFilePath = "/data/obs/campaigns/vital2/site/sinthern/dial/cbh.dat"
     jsonFilePath = "/home/citystation/public_html/sintWebDashboard/data.json"
 # jsonFilePath = "data.json"
 
@@ -70,6 +72,33 @@ def cbh_to_str(cbh_m, cbh_s, n_digits):
     else:
         s = sm + "&pm;" + ss
     return s
+
+
+def read_cbh():
+    # read the last line of the ceilometer file cbh.dat, which looks like:
+    #   'YYYY-MM-DD HH:MM:SSZ   <cbh in m | nan>   <source file>'
+    # returns a dict with a display 'string' handling the two special cases:
+    #   1. timestamp (utc) at least 5h old -> 'no data'
+    #   2. cbh value is 'nan'              -> 'no cloud'
+    try:
+        with open(cbhFilePath) as f:
+            last_line = f.readlines()[-1]
+        parts = last_line.split()
+        timestamp = pd.to_datetime(
+            parts[0] + " " + parts[1]
+        )  # tz-aware (trailing 'Z' = utc)
+        cbh_str = parts[2]
+
+        if (pd.Timestamp.now(tz="utc") - timestamp) >= pd.Timedelta(hours=5):
+            return {"value": None, "unit": "m", "string": "keine Daten"}
+        if cbh_str == "nan":
+            return {"value": None, "unit": "m", "string": "keine Wolke"}
+
+        cbh = float(cbh_str)
+        return {"value": cbh, "unit": "m", "string": str(round(cbh)) + " m"}
+    except (OSError, IndexError, ValueError):
+        # file missing/unreadable/empty/malformed -> treat as no data
+        return {"value": None, "unit": "m", "string": "keine Daten"}
 
 
 def updateJSON():
@@ -158,6 +187,7 @@ def updateJSON():
                 ".", ","
             ),
         },
+        "cbh": read_cbh(),
     }
 
     # export these strings in data.json

@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from updateJSON import cbh_to_str
 import json
 import pandas as pd
-from updateJSON import dew_point, convert_sea_lvl_pressure
+from updateJSON import dew_point, convert_sea_lvl_pressure, read_cbh
 
 
 local = False
@@ -22,7 +22,9 @@ else:
 
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path == "/data.json":
+        # strip any query string (e.g. the '?t=...' cache-buster) before routing
+        path = self.path.split("?")[0]
+        if path == "/data.json":
 
             df = pd.read_csv(dataFilePath, header=0)
 
@@ -111,7 +113,8 @@ class MyServer(BaseHTTPRequestHandler):
                             round(df["Rain_mm_Tot_hour"].values.item(), 1)
                         ).replace(".", ","),
                     },
-                },
+                    "cbh": read_cbh(),
+                }
             )
 
             # read last entry from data file and update dict
@@ -121,7 +124,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(bytes(json.dumps(dict, ensure_ascii=False), "utf-8"))
-        elif self.path == "/script.js":
+        elif path == "/script.js":
             # f = open("./index.html")
             self.send_response(200)
             self.send_header("Content-type", "text/javascript")
